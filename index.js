@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/api/v1/welcome', (req, res) => {
-  res.send('Hello, World from Express.js!');
+  res.send('Hello, World from Express!');
 });
 
 app.listen(3000, () => {
