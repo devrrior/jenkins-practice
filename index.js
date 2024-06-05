@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/api/v1/welcome', (req, res) => {
-  res.send('Hello world with Express + Docker!');
+  res.send('Hello world with Express + Docker');
 });
 
 app.listen(3000, () => {
