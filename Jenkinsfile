@@ -3,6 +3,7 @@ pipeline {
 
   environment {
     DOCKERIMAGE = "pipeline-hello-world"
+    HOME = "."
   }
 
   stages {
