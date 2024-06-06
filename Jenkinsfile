@@ -18,7 +18,7 @@ pipeline {
       steps {
         script {
           docker.image(DOCKERIMAGE).inside {
-            sh 'npm install'
+            // sh 'npm install'
             sh 'npm test'
           }
         }
