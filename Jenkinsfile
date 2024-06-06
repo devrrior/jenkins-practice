@@ -25,14 +25,16 @@ pipeline {
         }
       }
     }
+    stage ('Clean containers') {
+      steps {
+        sh 'docker stop $(docker ps -a -q)'
+      }
+
+    }
     stage ('Deploy') {
       steps {
         script {
-          docker.image(DOCKERIMAGE).inside {
-            sh 'docker build . -t pipeline-hello-world'
-            sh 'docker rm -f pipeline-hello-world || true'
-            sh 'docker run -d --name pipeline-hello-world -p 3000:3000 pipeline-hello-world'
-          }
+          docker.image(DOCKERIMAGE).run('-d -p 3001:3000')
         }
       }
     }
