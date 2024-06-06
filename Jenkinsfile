@@ -28,7 +28,11 @@ pipeline {
     stage ('Deploy') {
       steps {
         script {
-          docker.image(DOCKERIMAGE).run('-d -p 3001:3000')
+          sh "docker build . -t ${env.DOCKERIMAGE}"
+          sh "docker rm -f ${env.DOCKERIMAGE} || true"
+          sh "docker run -d --name ${env.DOCKERIMAGE} -p 3000:3000 ${env.DOCKERIMAGE}"
+        }
+        }
         }
       }
     }
