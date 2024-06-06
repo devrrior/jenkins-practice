@@ -28,11 +28,11 @@ pipeline {
     stage ('Deploy') {
       steps {
         script {
-          sh "docker build . -t ${env.DOCKERIMAGE}"
-          sh "docker rm -f ${env.DOCKERIMAGE} || true"
-          sh "docker run -d --name ${env.DOCKERIMAGE} -p 3000:3000 ${env.DOCKERIMAGE}"
-        }
-        }
+          docker.image(DOCKERIMAGE).inside {
+            sh 'docker build . -t pipeline-hello-world'
+            sh 'docker rm -f pipeline-hello-world || true'
+            sh 'docker run -d --name pipeline-hello-world -p 3000:3000 pipeline-hello-world'
+          }
         }
       }
     }
